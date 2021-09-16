@@ -42,3 +42,43 @@
 //	LoveYou(5);//问题规模300次
 //	return 0;
 //}
+
+//给各个数据元素分配连续的存储空间,大小为MaxSize*sizeof(ElempType)
+
+
+//顺序表的实现--动态分配
+//#define InitSize 10
+//typedef struct  //typedef的作用是重命名
+//{
+//	int* data;//指示动态分配数组的指针
+//	int MaxSize;//顺序表的最大容  量
+//	int length; //顺序表的当前长度
+//}SeqList; //这才是结构体的名字
+//void InitList(SeqList* L)
+//{
+//	//用malloc 函数申请一片连续的存储空间
+//	L->data = (int*)malloc(InitSize * sizeof(int));//malloc 申请了10个指向int类型长度的空间,强制转换为int*型 这个值在给L->data
+//	L->length = 0;//初始化顺序表
+//	L->MaxSize = InitSize;//与第60行相同 10 初始化顺序表容量
+//}
+//
+////增加动态数组的长度
+//void IncreaseSize(SeqList* L, int len) //len是增加的长度
+//{
+//	int* p = L -> data;//定义指针
+//	L->data = (int* )malloc(( L-> MaxSize+len)* sizeof(int));//将传的len参数5和ManSize10加起来在给L->data
+//	int i = 0;
+//	for (i = 0; i < L->length; i++) //将新空间 通过数组换个位置存放
+//	{
+//		L->data[i] = p[i];//顺序表的元素是连着放的 所以连着换位置没毛病
+//	}
+//	L->MaxSize = L->MaxSize + len;//更改顺序表最大容量
+//	free(p);//释放内存空间
+//}
+//int main()   
+//{
+//	SeqList L;
+//	InitList(&L);
+//	IncreaseSize(&L, 5);
+//	return 0;
+//}
