@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="DataStructure_1.c" />
     <ClCompile Include="first.cpp" />
+    <ClCompile Include="Guide.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

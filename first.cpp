@@ -49,4 +49,32 @@
 //maalloc函数需要强制转换为你定义的数据元素类型指针(ElemType)
 //C++  new,delete 关键字
 
-
+/* 代码不完整
+//顺序表的基本操作--插入
+#define MaxSize 10  //表最大长度
+typedef struct 
+{
+	int data[MaxSize];
+	int length;//顺序表长
+}SqList;
+bool ListInsert(SqList* &L，int i, int e) 
+{
+	if (i<1 || i>L.length + 1)
+		return false;
+	if (L.length >= MaxSize)
+		return false;
+	for (int j = L.length; j >= i; j--) 
+	
+		L.data[j] = L.data[j - 1];
+	L.data[i - 1] = e;
+	L.length++;
+	return true;
+}
+int main() 
+{
+	SqList L;
+	InitList(L);
+	ListInsert(L, 3, 3)
+	return 0;
+}
+*/
