@@ -8,6 +8,7 @@
 //整个数据结构的声明
 
 //顺序表,有效数组在数组中必须是连续
+// 顺序表的缺点 容易浪费空间 头插头删慢 时间复杂度O(n) 代价在挪动数据上 可以用链表来解决
 //静态顺序表设计 (固定大小)
 //typedef int SLDataType;//这样做的好处可以随时更改顺序表的数据类型
 //#define N 10 //更改顺序表长度
@@ -36,13 +37,17 @@ typedef struct SeqList
 	int capacity;//容量
 }SL,SeqList;
 void SeqListInit(SL* ps);
+void SeqListDestory(SL* ps);
 void SeqListPrint(SL* ps);//打印插入的值
-
+void SeqListCheckCapacity(SL *ps);//检查容量
 void SeqListPushBack(SL* ps, SLDataType x);//尾部插入
-void SeqListPopBack(SL* ps, int x);//尾部删除
+void SeqListPopBack(SL* ps);//尾部删除
 void SeqListPushFront(SL* ps, SLDataType x);//头上的插入
 void SeqListPopFront(SL* ps);//头上的删除
 
 //中间位置插入和删除
-void seqListInsert(SL* ps, int pos, SLDataType x);//结构体 插入的位置 插入的数据
-void seqListErase(SL* ps, int pos);//结构体 删除的位置
+void SeqListInsert(SL* ps, int pos, SLDataType x);//结构体 插入的位置 插入的数据
+void SeqListErase(SL* ps, int pos);//结构体 删除的位置
+
+//顺序表查找
+int SeqListFind(SL* ps, SLDataType x);
