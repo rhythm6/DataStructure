@@ -3,6 +3,7 @@
 //数据结构的测试
 //最好写一个接口测试一个接口 如果一起测,错误了不知道哪个借口有错误！！！
 
+//顺序表
 //测试头尾插入删除
 void TestSeqList1() 
 {
@@ -37,13 +38,13 @@ void TestSeqList1()
 	SeqListPopFront(&s);
 	SeqListPrint(&s);
 
-	//////中间插入
-	////SeqListInsert(&s, 4, 5);//在下标为4的地方插入 一个元素5
-	////SeqListPrint(&s);
+	//中间插入
+	SeqListInsert(&s, 4, 5);//在下标为4的地方插入 一个元素5
+	SeqListPrint(&s);
 
-	//////中间删除
-	////SeqListErase(&s, 5);//删除下标是五的元素 也就是第六个元素
-	////SeqListPrint(&s);
+	//中间删除
+	SeqListErase(&s, 5);//删除下标是五的元素 也就是第六个元素
+	SeqListPrint(&s);
 
 	
 	int pos = SeqListFind(&s, 5);//找到5这个元素的下标 赋给pos
@@ -58,3 +59,11 @@ int main()
 {
 	TestSeqList1();
 }
+
+
+////链表
+//int main() 
+//{
+//	SListNode* pList = NULL;//头结点 
+//	SListPrint(pList);//传入头结点的值
+//}

@@ -1,15 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 //比特航哥的数据结构课
 #include"SeqList.h"
+
+//顺序表
 //SeqList的实现
 void SeqListInit(SL* ps) 
 {
 	/*s.size = 0;
 	s.a = NULL;
 	s.capacity = 0;*/
-
-	ps->a = (SLDataType*)malloc(sizeof(SLDataType) * 4);//开辟了四个空间 可以存放四个元素 也就是capacity的值为4
-	if (ps->a == NULL)//结构体指针 访问结构体用->
+//初始化顺序表 为其开辟空间
+	ps->a = (SLDataType*)malloc(sizeof(SLDataType) * 4);//开辟了四个SLDataType大小的空间 
+	if (ps->a == NULL)//结构体指针 访问结构体成员用->
 	{
 		printf("申请内存失败\n");
 		exit(-1);//直接结束掉程序
@@ -17,7 +19,7 @@ void SeqListInit(SL* ps)
 	ps->size = 0;
 	ps->capacity = 4;
 }
-
+//打印顺序表内容
 void SeqListPrint(SL* ps) 
 {
 	int i = 0;
@@ -28,6 +30,7 @@ void SeqListPrint(SL* ps)
 	}
 	printf("\n");
 }
+//检查空间是否足够 
 void SeqListCheckCapacity(SL* ps) 
 {
 	//如果满了需要增容  一般增加到原来的二倍 增的少 增加频繁 增的多 浪费空间
@@ -38,12 +41,18 @@ void SeqListCheckCapacity(SL* ps)
 		if (ps->a == NULL)//如果数组为空
 		{
 			printf("扩容失败\n");
-			exit(-1);//z直接干掉程序 这句话太粗暴 就像生病了直接抢救都不抢救直接埋了
+			exit(-1);//直接干掉程序 这句话太粗暴 就像生病了直接抢救都不抢救直接埋了
 		}
 	}
-	//如果后面有足够的空间 原地增容，若后面没有足够的空间 找一块新的空间把数据拷过去，再释放掉就得空间
+	//如果后面有足够的空间 原地增容，若后面没有足够的空间 找一块新的空间把数据拷过去，再释放掉旧的空间
 }
-
+//销毁顺序表
+void SeqListDestory(SL* ps)
+{
+	free(ps->a);//把指针所指向的空间释放
+	ps->a = NULL;//把指针变为空指针
+	ps->size = ps->capacity = 0;//再把其他数据都变为0
+}
 //尾部插入
 void SeqListPushBack(SL* ps, SLDataType x) 
 {
@@ -66,7 +75,6 @@ void SeqListPopBack(SL* ps)
 	//所以上面这行代码不需要 万一那个地方本来就是0呢
 	ps->size--;
 }
-
 //头部插入 //插入的时候一定要注意size是否超过了Capacity 
 void SeqListPushFront(SL* ps, SLDataType x)//头上的插入 //没有接口可以直接在数据前方增加空间 只能先把要插入位置的数据往后挪
 {
@@ -76,7 +84,7 @@ void SeqListPushFront(SL* ps, SLDataType x)//头上的插入 //没有接口可以直接在数据
 	int end = ps->size - 1;//end是这个数组的最后一个元素
 	while (end >=0 )//一直到第一个元素也被往后挪，循环停止
 	{
-		ps->a[end + 1] = ps->a[end];//把end这个位置的值挪到end+1的位置 
+		ps->a[end + 1] = ps->a[end];//从前往后挪
 		--end;//end的位置往前走一位
 	}
 	ps->a[0] = x;//把x放进头上的位置
@@ -85,13 +93,6 @@ void SeqListPushFront(SL* ps, SLDataType x)//头上的插入 //没有接口可以直接在数据
 	*/
 	SeqListInsert(ps, 0, x);
 }
-//销毁顺序表
-void SeqListDestory(SL* ps) 
-{
-	free(ps->a);//把指针所指向的空间释放
-	ps->a = NULL;//把指针变为空指针
-	ps->size = ps->capacity = 0;//再把其他数据都变为0
-}
 //头上的删除
 void SeqListPopFront(SL* ps) 
 {
@@ -99,7 +100,7 @@ void SeqListPopFront(SL* ps)
 	int start = 0;
 	while (start<= ps->size-2)//最后一个元素是size-1 而start是把后面的元素往前面挪 所以start的最后一个位置是size-2
 	{
-		ps->a[start] = ps->a[start + 1];
+		ps->a[start] = ps->a[start + 1];//从后往前挪 把第一个元素给覆盖掉 再把最后一个元素给删掉
 		++start;
 	}
 	ps->size--;
@@ -114,7 +115,7 @@ void SeqListInsert(SL* ps, int pos, SLDataType x) //结构体 插入的位置 插入的数据
 	int middleInsert = ps->size - 1;//middleInsert是最后一个元素的位置
 	while (middleInsert >= pos)//如果middleInsert的位置在pos的位置后面
 	{
-		ps->a[middleInsert + 1] = ps->a[middleInsert];//将pos以及pos后面的数据往后面挪,直到pos的也被挪到后面去了
+		ps->a[middleInsert + 1] = ps->a[middleInsert];//将pos要插入的位置后面的元素全部向后挪
 		--middleInsert;//这里写成++ 写成个死循环了..
 	}
 	ps->a[pos] = x;//数据放进去
@@ -128,7 +129,7 @@ void SeqListErase(SL* ps, int pos) //结构体 删除的位置
 	int middleDel = pos;//middleDel是pos的右边
 	while (middleDel < ps->size -1)//停止结果 小于等于最后一个位置
 	{
-		ps->a[middleDel] = ps->a[middleDel+1];
+		ps->a[middleDel] = ps->a[middleDel+1];//将pos的位置挪到最后 然后删除
 		++middleDel;
 	}
 	ps->size--;
@@ -149,3 +150,10 @@ int SeqListFind(SL* ps, SLDataType x) //找到后 返回该元素的下标
 	//找不到
 	return -1;
 }
+
+
+////链表
+//void SListPrint(SListNode* phead)//打印函数
+//{
+//
+//}
