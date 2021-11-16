@@ -62,14 +62,72 @@
 
 
 ////链表
-int main() 
+void SListNodeTest1() 
 {
-	SListNode* pList = NULL;//存头节点的地址 现在链表里什么都没有 放NULL就行了
+	SListNode* plist = NULL;
+	SListPushBack(&plist, 1);//测试尾插
+	SListPushBack(&plist, 2);
+	SListPushBack(&plist, 3);
+	SListPushBack(&plist, 4);
+	SListPushFront(&plist, 0);
+	SListPrint(plist);//传入头结点的值
 
-	SListPushBack(&pList, 1);//测试尾插
-	SListPushBack(&pList, 2); 
-	SListPushBack(&pList, 3);
-	SListPushBack(&pList, 4);
+	SListPopFront(&plist);//测试头删
+	SListPopFront(&plist);
+	SListPopFront(&plist);
+	SListPrint(plist);
+	SListPopFront(&plist);
+	SListPopFront(&plist);
+	SListPrint(plist);
 
-	SListPrint(pList);//传入头结点的值
+	SListPopBack(&plist);//测试尾删
+	SListPopBack(&plist);
+	SListPopBack(&plist);
+	SListPopBack(&plist);
+	SListPopBack(&plist);
+	SListPrint(plist);
+}
+void SListNodeTest2() 
+{
+	SListNode* plist = NULL;//存头节点的地址 现在链表里什么都没有 放NULL就行了
+	SListPushBack(&plist, 1);//测试尾插
+	SListPushBack(&plist, 2);
+	SListPushBack(&plist, 3);
+	SListPushBack(&plist, 4);
+	//想在3的前面插入一个10 要先找到3
+	SListNode* pos = SListFind(plist, 3);
+	//1前面插10
+	//SListNode* pos = SListFind(plist, 1);
+	if (pos) 
+	{
+		SListInsert(&plist, pos, 10);
+	}
+	SListPrint(plist);
+}
+
+void SListNodeTest3()
+{
+	SListNode* plist = NULL;//存头节点的地址 现在链表里什么都没有 放NULL就行了
+	SListPushBack(&plist, 1);//测试尾插
+	SListPushBack(&plist, 2);
+	SListPushBack(&plist, 3);
+	SListPushBack(&plist, 4);
+	//删除 pos位置的值
+	SListNode* pos = SListFind(plist, 3);
+	if (pos)
+	{
+		SListErase(&plist, pos);
+	}
+	SListPrint(plist);
+
+	pos = SListFind(plist, 1);
+	if (pos)
+	{
+		SListErase(&plist, pos);
+	}
+	SListPrint(plist);
+}
+int main()
+{
+	SListNodeTest3();
 }

@@ -61,10 +61,15 @@ typedef struct SListNode
 	SListDataType data;
 	struct SListNode* next;//结构体套结构体 这个指针指向下一个结构体 下一个结构体里面还有一个next指针 继续套娃
 }SListNode;
-void SListPushBack(SListNode** pphead, SListDataType x);//尾插
-void SListPopBack(SListNode* phead);//尾删
-
-void SListPushFront(SListNode* phead, SListDataType x);//头插
-void SListPopFront(SListNode* phead);//头删
-
+//可能会改变链表的头指针 传二级指针 
+//不会改变链表的头指针 传一级指针 
 void SListPrint(SListNode* phead);//打印函数
+void SListPushBack(SListNode** pphead, SListDataType x);//尾插
+void SListPopBack(SListNode** phead);//尾删
+void SListPushFront(SListNode** pphead, SListDataType x);//头插
+void SListPopFront(SListNode** pphead);//头删
+SListNode* SListFind(SListNode* phead, SListDataType x);//查找
+void SListInsert(SListNode** pphead, SListNode* pos, SListDataType x);//任意位置插入
+void SListErase(SListNode** pphead,SListNode* pos);//任意位置删除 
+
+

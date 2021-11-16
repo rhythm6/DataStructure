@@ -154,37 +154,40 @@
 
 //链表
 //申请结点
-SListNode * CreateSListNode(SListDataType x)
+#include "SeqList.h"
+SListNode* CreateSListNode(SListDataType x)
 {
 	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
-	if (newNode == NULL) 
+	if (newNode == NULL)
 	{
 		printf("申请结点失败");
 	}
-	newNode -> data = x;
-	newNode -> next = NULL;
-	return newNode;
+	newNode->data = x;
+	newNode->next = NULL;
+	return newNode;	
 }
 //边遍历 边打印链表
 void SListPrint(SListNode* phead)
 {
-	                        
+
 	SListNode* cur = phead;
-	while (cur != NULL) 
+	while (cur != NULL)
 	{
-		printf(" %d->",cur->data);
-		cur = cur-> next;
+		printf(" %d->", cur->data);
+		cur = cur->next;
 	}
 	printf("->NULL\n");
 }
+
+//尾插 
 void SListPushBack(SListNode** pphead, SListDataType x)
 {
 	SListNode* newNode = CreateSListNode(x);
-	if (*pphead == NULL) 
+	if (*pphead == NULL)
 	{
 		*pphead = newNode;
 	}
-	else 
+	else
 	{
 		//找尾结点(tail 尾部)
 		SListNode* tail = *pphead;
@@ -192,6 +195,110 @@ void SListPushBack(SListNode** pphead, SListDataType x)
 		{
 			tail = tail->next;//通过next查找尾结点 因为只有next能找到下一个结点
 		}
-		tail -> next = newNode;
+		tail->next = newNode;
+	}
+}
+
+//尾删
+void SListPopBack(SListNode** pphead)
+{
+	//极端情况
+	//1链表为空
+	if (*pphead == NULL)
+	{
+		return ;
+	}
+	//2如果只有一个结点(只有头结点) 这个结点没有前一个结点 此时prev和tail在一个位置  若释放tail的空间 prev为空 prev->next =NULL; 空指针指向地址，程序崩溃
+	else if ((*pphead)->next == NULL)
+	{
+		free(*pphead);
+		*pphead = NULL;
+	}
+	else 
+	{
+		SListNode* prev = NULL;//prev是要找的结点的前一个结点
+		SListNode* tail = *pphead;
+		while (tail->next != NULL)
+		{
+			prev = tail;
+			tail = tail->next;
+		}
+		free(tail);
+		prev->next = NULL;
+	}
+}
+
+//头删
+void SListPopFront(SListNode** pphead)
+{
+	SListNode* next = (*pphead)->next;//*和->优先级一样 所以用()先解引用  先把头结点指向的下个结点的地址保存起来
+	//不能一上去就把头结点free掉 因为这样就找不到下一个结点了 
+	free(*pphead);//释放头结点空间
+	*pphead = next;//新的头结点地址是下一个结点的地址 
+}
+
+//头插
+void SListPushFront(SListNode** pphead, SListDataType x)
+{
+	SListNode* newNode = CreateSListNode(x);//创建一个节点
+	newNode->next = *pphead;//新创建的头结点指向原来的头节点 
+	*pphead = newNode;//把头结点换成这个新插入的头结点 
+}
+
+//查找
+SListNode* SListFind(SListNode* phead, SListDataType x)
+{
+	SListNode* cur = phead;;
+	while (cur)
+	{
+		if (cur->data == x)//先判断再找下一个
+		{
+			return cur;//找到了 有返回值 函数类型要写返回的类型！！！
+			//否则报错xxx类型不能用于初始化xxx类型的实体
+		}
+		cur = cur->next;
+	}
+	return NULL;
+}
+
+//在pos的前面插入 
+void SListInsert(SListNode** pphead, SListNode* pos, SListDataType x)
+{
+	//特殊情况
+	//在头结点插入时 prev->next永远不等于pos 程序崩溃
+	if (pos == *pphead) 
+	{
+		SListPushFront(pphead,x);//此函数接收的就是一级指针 直接传指针名给头插函数就行
+	}
+	else 
+	{
+		SListNode* newNode = CreateSListNode(x);
+		SListNode* prev = *pphead;
+		while (prev->next != pos)//找前一个结点
+		{
+			prev = prev->next;
+		}
+		prev->next = newNode;//新结点前一个结点指向新结点
+		newNode->next = pos;//新结点指向pos所在位置的结点
+	}
+	
+}
+
+//删除pos位置地方的值
+void SListErase(SListNode** pphead, SListNode* pos) 
+{
+	if (pos == *pphead)//如果是头结点 还是循环找不到prev出错
+	{
+		SListPopFront(pphead);//执行头删
+	}
+	else
+	{
+		SListNode* prev = *pphead;
+		while (prev->next != pos) //找删除结点的前一个结点
+		{
+			prev = prev->next;
+		}
+		prev->next = pos->next;//prev原本指向pos 现在指向pos的下一个结点
+		free(pos);
 	}
 }
