@@ -53,23 +53,37 @@
 //int SeqListFind(SL* ps, SLDataType x);
 
 
-////链表
+////不单头结点的单链表
 //结点(NO\ode) 节点 不同的书写的不同
-typedef int SListDataType;
-typedef struct SListNode
+//typedef int SListDataType;
+//typedef struct SListNode
+//{
+//	SListDataType data;
+//	struct SListNode* next;//结构体套结构体 这个指针指向下一个结构体 下一个结构体里面还有一个next指针 继续套娃
+//}SListNode;
+////可能会改变链表的头指针 传二级指针 
+////不会改变链表的头指针 传一级指针 
+//void SListPrint(SListNode* phead);//打印函数
+//void SListPushBack(SListNode** pphead, SListDataType x);//尾插
+//void SListPopBack(SListNode** phead);//尾删
+//void SListPushFront(SListNode** pphead, SListDataType x);//头插
+//void SListPopFront(SListNode** pphead);//头删
+//SListNode* SListFind(SListNode* phead, SListDataType x);//查找
+//void SListInsert(SListNode** pphead, SListNode* pos, SListDataType x);//任意位置插入
+//void SListErase(SListNode** pphead,SListNode* pos);//任意位置删除 
+
+//带头结点的双向循环链表
+typedef int LTDataType;
+typedef struct ListNode
 {
-	SListDataType data;
-	struct SListNode* next;//结构体套结构体 这个指针指向下一个结构体 下一个结构体里面还有一个next指针 继续套娃
-}SListNode;
-//可能会改变链表的头指针 传二级指针 
-//不会改变链表的头指针 传一级指针 
-void SListPrint(SListNode* phead);//打印函数
-void SListPushBack(SListNode** pphead, SListDataType x);//尾插
-void SListPopBack(SListNode** phead);//尾删
-void SListPushFront(SListNode** pphead, SListDataType x);//头插
-void SListPopFront(SListNode** pphead);//头删
-SListNode* SListFind(SListNode* phead, SListDataType x);//查找
-void SListInsert(SListNode** pphead, SListNode* pos, SListDataType x);//任意位置插入
-void SListErase(SListNode** pphead,SListNode* pos);//任意位置删除 
+	struct ListNode* next;//后继
+	struct ListNode* prev;//前驱 头结点的前驱就是链表的尾部
+	LTDataType data;
+}ListNode;
 
-
+//初始化
+ListNode* ListInit();
+//毁灭
+void ListDestory(ListNode* phead);
+//尾插
+void ListPushBack(ListNode* phead, LTDataType x);

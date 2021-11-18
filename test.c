@@ -61,73 +61,90 @@
 //}
 
 
-////链表
-void SListNodeTest1() 
+////不带头结点的单链表
+//缺点:不能单独存放数据 尾删 任意地方插入 任意地方删除 时间复杂度都是O(n)
+//因为需要从头开始找要修改结点的前一个结点
+//void SListNodeTest1() 
+//{
+//	SListNode* plist = NULL;
+//	SListPushBack(&plist, 1);//测试尾插
+//	SListPushBack(&plist, 2);
+//	SListPushBack(&plist, 3);
+//	SListPushBack(&plist, 4);
+//	SListPushFront(&plist, 0);
+//	SListPrint(plist);//传入头结点的值
+//
+//	SListPopFront(&plist);//测试头删
+//	SListPopFront(&plist);
+//	SListPopFront(&plist);
+//	SListPrint(plist);
+//	SListPopFront(&plist);
+//	SListPopFront(&plist);
+//	SListPrint(plist);
+//
+//	SListPopBack(&plist);//测试尾删
+//	SListPopBack(&plist);
+//	SListPopBack(&plist);
+//	SListPopBack(&plist);
+//	SListPopBack(&plist);
+//	SListPrint(plist);
+//}
+//void SListNodeTest2() 
+//{
+//	SListNode* plist = NULL;//存头节点的地址 现在链表里什么都没有 放NULL就行了
+//	SListPushBack(&plist, 1);//测试尾插
+//	SListPushBack(&plist, 2);
+//	SListPushBack(&plist, 3);
+//	SListPushBack(&plist, 4);
+//	//想在3的前面插入一个10 要先找到3
+//	SListNode* pos = SListFind(plist, 3);
+//	//1前面插10
+//	//SListNode* pos = SListFind(plist, 1);
+//	if (pos) 
+//	{
+//		SListInsert(&plist, pos, 10);
+//	}
+//	SListPrint(plist);
+//}
+//
+//void SListNodeTest3()
+//{
+//	SListNode* plist = NULL;//存头节点的地址 现在链表里什么都没有 放NULL就行了
+//	SListPushBack(&plist, 1);//测试尾插
+//	SListPushBack(&plist, 2);
+//	SListPushBack(&plist, 3);
+//	SListPushBack(&plist, 4);
+//	//删除 pos位置的值
+//	SListNode* pos = SListFind(plist, 3);
+//	if (pos)
+//	{
+//		SListErase(&plist, pos);
+//	}
+//	SListPrint(plist);
+//
+//	pos = SListFind(plist, 1);
+//	if (pos)
+//	{
+//		SListErase(&plist, pos);
+//	}
+//	SListPrint(plist);
+//}
+//int main()
+//{
+//	SListNodeTest3();
+//}
+
+
+//带头结点的双向循环链表 带头结点是带哨兵位的头结点，这个结点不存储有效数据
+//双向链表有俩个指针 后继(指向下一个指针) 前驱(指向后一个的指针) 
+//带头结点不需要改变传过来的指针，也意味着不需要传二级指针了
+
+void TestList1() 
 {
-	SListNode* plist = NULL;
-	SListPushBack(&plist, 1);//测试尾插
-	SListPushBack(&plist, 2);
-	SListPushBack(&plist, 3);
-	SListPushBack(&plist, 4);
-	SListPushFront(&plist, 0);
-	SListPrint(plist);//传入头结点的值
-
-	SListPopFront(&plist);//测试头删
-	SListPopFront(&plist);
-	SListPopFront(&plist);
-	SListPrint(plist);
-	SListPopFront(&plist);
-	SListPopFront(&plist);
-	SListPrint(plist);
-
-	SListPopBack(&plist);//测试尾删
-	SListPopBack(&plist);
-	SListPopBack(&plist);
-	SListPopBack(&plist);
-	SListPopBack(&plist);
-	SListPrint(plist);
+	ListNode* plist = ListInit(plist);
+	ListDestory(plist);
 }
-void SListNodeTest2() 
+int main() 
 {
-	SListNode* plist = NULL;//存头节点的地址 现在链表里什么都没有 放NULL就行了
-	SListPushBack(&plist, 1);//测试尾插
-	SListPushBack(&plist, 2);
-	SListPushBack(&plist, 3);
-	SListPushBack(&plist, 4);
-	//想在3的前面插入一个10 要先找到3
-	SListNode* pos = SListFind(plist, 3);
-	//1前面插10
-	//SListNode* pos = SListFind(plist, 1);
-	if (pos) 
-	{
-		SListInsert(&plist, pos, 10);
-	}
-	SListPrint(plist);
-}
-
-void SListNodeTest3()
-{
-	SListNode* plist = NULL;//存头节点的地址 现在链表里什么都没有 放NULL就行了
-	SListPushBack(&plist, 1);//测试尾插
-	SListPushBack(&plist, 2);
-	SListPushBack(&plist, 3);
-	SListPushBack(&plist, 4);
-	//删除 pos位置的值
-	SListNode* pos = SListFind(plist, 3);
-	if (pos)
-	{
-		SListErase(&plist, pos);
-	}
-	SListPrint(plist);
-
-	pos = SListFind(plist, 1);
-	if (pos)
-	{
-		SListErase(&plist, pos);
-	}
-	SListPrint(plist);
-}
-int main()
-{
-	SListNodeTest3();
+	return 0;
 }
