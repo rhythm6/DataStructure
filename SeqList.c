@@ -319,6 +319,7 @@ ListNode* ListInit()
 	ListNode* phead = BuyListNode(0);//传入开辟结点的位置
 	phead->next = phead;//后继指向自己
 	phead->prev = phead;//前驱也指向自己
+	return phead;
 }
 //毁灭
 void ListDestory(ListNode* phead) 
@@ -328,6 +329,7 @@ void ListDestory(ListNode* phead)
 //尾插
 void ListPushBack(ListNode* phead, LTDataType x) 
 {
+	assert(phead);
 	//跟单链表的尾插一样 第一步先找尾
 	ListNode* tail = phead->prev;//头结点的前驱 就是链表的尾部
 	
@@ -336,4 +338,41 @@ void ListPushBack(ListNode* phead, LTDataType x)
 	newnode->prev = tail;//新结点的前驱指向tail
 	newnode->next = phead;//新结点的后继指向头结点
 	phead->prev = newnode;//头结点的前驱指向新结点
+}
+void ListPrint(ListNode* phead) 
+{
+	ListNode* cur = phead->next;
+	while (cur!= phead)
+	{
+		printf("->%d ",cur->data);
+		cur = cur->next;
+	}
+	printf("\n");
+}
+//头插
+void ListPushFront(ListNode* phead, LTDataType x)
+{
+	assert(phead);
+	ListNode* first = phead->next;//first是第二个结点
+	ListNode* newnode = BuyListNode(x);
+
+	phead->next = newnode;
+	newnode->prev = phead;
+	newnode->next = first;
+	first->prev = newnode;
+}
+//头删
+void ListPopFront(ListNode* phead, LTDataType x)
+{
+	assert(phead);
+	ListNode* first = phead->next;
+	ListNode* second = first->next;
+	phead->next = second;
+	second->prev = phead;
+	free(first);
+	first = NULL;
+}
+//尾删
+void ListPopback(ListNode* phead, LTDataType x) 
+{
 }

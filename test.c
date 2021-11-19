@@ -141,10 +141,21 @@
 
 void TestList1() 
 {
-	ListNode* plist = ListInit(plist);
+	ListNode* plist = NULL;
+	plist = ListInit(plist);
+	//ListNode* plist = ListInit(plist);//(报错)不能这样写  error C4700:使用了未初始化的局部变量“plist” 必须先定义在初始化
+	//可能在标准不够严格的编译器或同一编译器的其他版本可以运行
+	ListPushBack(plist, 1);
+	ListPushBack(plist, 2);
+	ListPushBack(plist, 3);
+	ListPushBack(plist, 4);
+	ListPushFront(plist, 0);
+	ListPrint(plist);
 	ListDestory(plist);
 }
+#include "stdio.h"
 int main() 
 {
+	TestList1();
 	return 0;
 }

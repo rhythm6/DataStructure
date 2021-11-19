@@ -87,3 +87,11 @@ ListNode* ListInit();
 void ListDestory(ListNode* phead);
 //Œ≤≤Â
 void ListPushBack(ListNode* phead, LTDataType x);
+//¥Ú”°
+void ListPrint(ListNode* phead);
+//Õ∑≤Â
+void ListPushFront(ListNode* phead, LTDataType x);
+//Õ∑…æ
+void ListPopFront(ListNode* phead, LTDataType x);
+//Œ≤…æ
+void ListPopback(ListNode* phead, LTDataType x);
