@@ -5,6 +5,7 @@
 #include<math.h>
 #include<stdlib.h>
 #include<windows.h>
+#include<stdbool.h>
 //整个数据结构的声明
 
 //顺序表,有效数组在数组中必须是连续
@@ -94,4 +95,14 @@ void ListPushFront(ListNode* phead, LTDataType x);
 //头删
 void ListPopFront(ListNode* phead, LTDataType x);
 //尾删
-void ListPopback(ListNode* phead, LTDataType x);
+void ListPopBack(ListNode* phead, LTDataType x);
+//查找
+ListNode* ListFind(ListNode* phead, LTDataType x);
+//pos位置之前插入x
+void ListInsert(ListNode* pos, LTDataType x);
+//删除pos位置的值
+void ListErase(ListNode* pos);
+//判断链表是否为空
+bool ListEmpty(ListNode* phead);
+//计算链表大小
+int ListSize(ListNode* phead);
