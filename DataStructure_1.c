@@ -82,3 +82,57 @@
 //	IncreaseSize(&L, 5);
 //	return 0;
 //}
+
+
+//oj题用的链表
+//struct ListNode 
+//{
+//	int val;
+//	struct ListNode* next;
+//};
+//oj题 反转链表
+//反转链表 方法一:指针反转
+//struct ListNode* reverseList(struct ListNode* head) 
+//{
+//	struct ListNode* n1, *n2 = head , *n3 = n2->next ;
+//	while (n2) 
+//	{
+//		n2->next = n1;//n1和n2用来翻转俩个结点之间的指针
+//		n1 = n2;//翻转后全都往后走
+//		n2 = n3;
+//		if (n3)//判断n3是否为空
+//		{
+//			n3 = n3->next;//不为空也往后走 若为空，n2也为空 下一次循环不会执行了 指针翻转完毕
+//		}
+//	}
+// return n1;
+//}
+
+//反转链表 方法二:头插法(是在头结点前面插入)
+//struct ListNode* reverseList(struct ListNode* head)
+//{
+//	struct ListNode* cur = head;//原链表的头结点
+//	struct ListNode* newhead = NULL;//新链表的头结点
+//
+//	while (cur)
+//	{
+//		struct ListNode* next = cur->next;//存放原链表下个结点的值
+//		cur->next = newhead;//让新插入的结点指向前一个插入的结点
+//		newhead = cur;//新链表进行头插 
+//		cur = next;//cur往前走一个结点
+//	}
+//	return newhead;
+//}
+//查找链表中间结点 偶数个结点的链表返回中间的俩个结点中的第二个结点 
+//struct ListNode* middleNode(struct ListNode* head)
+//{
+//	struct ListNode* slow = head, *fast = head;//定义快慢指针 快的是慢的指针步长的二倍
+//	while (fast && fast->next)//循环想的是结束的条件 填的是继续的条件
+//	{
+// 
+//		slow = slow->next;//走一步
+//		fast = fast->next->next;//走两步
+//		//雀氏秒
+//	}
+//	return slow;
+//}
