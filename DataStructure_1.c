@@ -132,7 +132,52 @@
 // 
 //		slow = slow->next;//走一步
 //		fast = fast->next->next;//走两步
-//		//雀氏秒
+//		//雀氏妙
 //	}
 //	return slow;
+//}
+
+//将俩个升序链表合并为一个新的升序链表
+//l1 l2 是这俩条链 tail是新链表的尾结点 head是新链表的头结点(head不变) 
+//struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
+//{
+//	if (l1 == NULL)
+//		return l2;
+//	if (l2 == NULL)
+//		return l1;
+//	struct ListNode* head = NULL, * tail = NULL;
+//	while (l1 !=NULL && l2!=NULL) 
+//	{
+//		if (l1->val < l2->val) 
+//		{
+//			if (tail == NULL)
+//			{
+//				head = tail = l1;//直接把l1拿下来尾插
+//			}
+//			else 
+//			{
+//				tail->next = l1;
+//				tail = tail->next;//让tail始终保持为尾结点
+//			}
+//			l1 = l1->next;
+//		}
+//		else 
+//		{
+//			if (tail == NULL) 
+//			{
+//				head = tail = l2;//把l2拿下来尾插
+//			}
+//			else 
+//			{
+//				tail->next = l2;
+//				tail = tail->next;
+//			}
+//			l2 = l2->next;
+//		}
+//	}
+//	if (l1)
+//		tail - next = l1;
+//	if (l2)
+//		tail - next = l2;
+//
 //}
