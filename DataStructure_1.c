@@ -159,7 +159,7 @@
 //				tail->next = l1;
 //				tail = tail->next;//让tail始终保持为尾结点
 //			}
-//			l1 = l1->next;
+//			l1 = l1->next;//
 //		}
 //		else 
 //		{
@@ -181,3 +181,78 @@
 //		tail - next = l2;
 //
 //}
+//代码改进1
+//struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
+//{
+//	if (l1 == NULL)
+//		return l2;
+//	if (l2 == NULL)
+//		return l1;
+//
+//	struct ListNode* head = NULL, * tail = NULL;
+//	//提前取一个头结点下来
+//	if (l1->val < l2->val)
+//	{
+//		head = tail = l1;
+//		l1 = l1->next;
+//	}
+//	else 
+//	{
+//		head = tail = l2;
+//		l2 = l2->next;
+//	}
+//	while (l1 !=NULL && l2!=NULL) 
+//	{
+//		if (l1->val < l2->val) 
+//		{
+//
+//			tail->next = l1;
+//			l1 = l1->next;//从第二个结点开始判断和尾插
+//		}
+//		else 
+//		{
+//			tail->next = l2;
+//			l2 = l2->next;
+//		}
+//		tail = tail->next;//让tail始终保持为尾结点
+//	}
+//	if (l1)
+//		tail - next = l1;
+//	if (l2)
+//		tail - next = l2;
+//
+//}
+//第三种方法 设置哨兵位
+struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
+{
+	if (l1 == NULL)
+		return l2;
+	if (l2 == NULL)
+		return l1;
+
+	struct ListNode* head = NULL, * tail = NULL;
+//设置哨兵位
+	head = tail = (struct ListNode*)malloc(sizeof(struct ListNode));
+	while (l1 != NULL && l2 != NULL)
+	{
+		if (l1->val < l2->val)
+		{
+
+			tail->next = l1;
+			l1 = l1->next;
+		}
+		else
+		{
+			tail->next = l2;
+			l2 = l2->next;
+		}
+		tail = tail->next;//让tail始终保持为尾结点
+	}
+	if (l1)
+		tail - next = l1;
+	if (l2)
+		tail - next = l2;
+	struct ListNode* first = head->next;//返回的是真正的头结点 不是哨兵位！
+	free(head);
+	return first;
+}
