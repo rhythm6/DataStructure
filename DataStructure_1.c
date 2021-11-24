@@ -5,6 +5,7 @@
 #include<math.h>
 #include<stdlib.h>
 #include<windows.h>
+#include<stdbool.h>
 //时间复杂度计算
 //void Loveyou(int n)//n为问题规模
 //{
@@ -85,11 +86,11 @@
 
 
 //oj题用的链表
-//struct ListNode 
-//{
-//	int val;
-//	struct ListNode* next;
-//};
+struct ListNode 
+{
+	int val;
+	struct ListNode* next;
+};
 //oj题 反转链表
 //反转链表 方法一:指针反转
 //struct ListNode* reverseList(struct ListNode* head) 
@@ -176,9 +177,9 @@
 //		}
 //	}
 //	if (l1)
-//		tail - next = l1;
+//		tail ->next = l1;
 //	if (l2)
-//		tail - next = l2;
+//		tail -> next = l2;
 //
 //}
 //代码改进1
@@ -217,42 +218,65 @@
 //		tail = tail->next;//让tail始终保持为尾结点
 //	}
 //	if (l1)
-//		tail - next = l1;
+//		tail - >next = l1;
 //	if (l2)
-//		tail - next = l2;
+//		tail -> next = l2;
 //
 //}
 //第三种方法 设置哨兵位
-struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
-{
-	if (l1 == NULL)
-		return l2;
-	if (l2 == NULL)
-		return l1;
+//struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
+//{
+//	if (l1 == NULL)
+//		return l2;
+//	if (l2 == NULL)
+//		return l1;
+//
+//	struct ListNode* head = NULL, * tail = NULL;
+////设置哨兵位
+//	head = tail = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	while (l1 != NULL && l2 != NULL)
+//	{
+//		if (l1->val < l2->val)
+//		{
+//
+//			tail->next = l1;
+//			l1 = l1->next;
+//		}
+//		else
+//		{
+//			tail->next = l2;
+//			l2 = l2->next;
+//		}
+//		tail = tail->next;//让tail始终保持为尾结点
+//	}
+//	if (l1)
+//		tail -> next = l1;
+//	if (l2)
+//		tail -> next = l2;
+//	struct ListNode* first = head->next;//返回的是真正的头结点 不是哨兵位！
+//	free(head);
+//	return first;
+//}
 
-	struct ListNode* head = NULL, * tail = NULL;
-//设置哨兵位
-	head = tail = (struct ListNode*)malloc(sizeof(struct ListNode));
-	while (l1 != NULL && l2 != NULL)
-	{
-		if (l1->val < l2->val)
-		{
-
-			tail->next = l1;
-			l1 = l1->next;
-		}
-		else
-		{
-			tail->next = l2;
-			l2 = l2->next;
-		}
-		tail = tail->next;//让tail始终保持为尾结点
-	}
-	if (l1)
-		tail - next = l1;
-	if (l2)
-		tail - next = l2;
-	struct ListNode* first = head->next;//返回的是真正的头结点 不是哨兵位！
-	free(head);
-	return first;
-}
+//链表的环就是尾结点指向任意结点形成的环 其中指向头结点的环 叫做循环链表 
+//这种有环的链表快慢指针是走不完的 会在那个环上一直转
+//判断链表是否有环
+//bool hasCycle(struct ListNode* head)
+//{
+//	struct ListNode* slow = head, * fast = head;//定义快慢指针来解决
+//	while(fast )//如果快指针不为空(没走完) 且不和慢指针相同 就继续走
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//		if (slow == fast)
+//			return true;//有环就停下
+//	}
+//	//fast走完了说明没有环
+//	return false;
+//}
+//面试问题:
+//请证明fast和slow一定会相遇吗？有可能永远追不上吗？在fast走俩步 slow走一步的情况下一定能追上
+//2.slow一次走一步，fast走3步行不行 //有可能追不上
+//3.slow一次走一步,fast走4步行不行  //也有可能追不上
+//证明:若fast走两步 slow走一步 假设环长为N 那么快慢指针之间距离为N-1 这俩指针每走一次 他们之间的距离-1 最后距离为0 快慢指针相遇
+//若fast走三步 slow走一步 这俩指针每走一次 他们之间的距离-2 此时若N-1为偶数 就快指针就追的上慢指针 若N-1为奇数 他俩最近的时候距离为-1 也就是快指针反超了 永远也追不上
