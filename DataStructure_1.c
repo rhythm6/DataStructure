@@ -366,3 +366,7 @@
 //('01011', 'c08', 60),
 //('01012', 'c09', 92),
 //('01012', 'c14', 90)
+// 检索选修了‘C++’课程的学生的姓名。
+//select sname from student where sno in
+//(select sno from sc where cno in
+//(select cno from course where cname = 'c++'))
