@@ -281,6 +281,36 @@
 //证明:若fast走两步 slow走一步 假设环长为N 那么快慢指针之间距离为N-1 这俩指针每走一次 他们之间的距离-1 最后距离为0 快慢指针相遇
 //若fast走三步 slow走一步 这俩指针每走一次 他们之间的距离-2 此时若N-1为偶数 就快指针就追的上慢指针 若N-1为奇数 他俩最近的时候距离为-1 也就是快指针反超了 永远也追不上
 
+/*
+给定一个链表,返回链表开始入环的第一个节点。如果链表无环,则返回null
+结论:一个指针从meet点(环内的一点 slow指针被fast指针追上的位置 设为点X)，一个指针从链表起始位置开始走 他们会在环的入口点相遇
+
+fast走的速度和路程是slow的二倍
+slow进环了以后，在一圈之内,fast一定会追上slow
+slow走的路程:L(环外走的路程)+X
+fast走的路程:L+N*C+X = 2(L+X) -> N*C = L+X ->N*C -X = L
+->(N-1)*C+C-X = L(若快指针只走一圈 L+C+X = 2(L-X) -> C-X=L)
+*/
+
+//struct ListNode* detectCycle(struct ListNode* head)
+//{
+//	struct ListNode* slow = head, *fast = head;
+//	while (fast && fast->next)
+//	{
+//		slow = slow->next;
+//		fast = fast->next->next;
+//		if (slow == fast)//快慢指针相遇 这个位置就是meet点
+//		{
+//			struct ListNode* meet = slow;
+//			while (head != meet) 
+//			{
+//				head = head->next;
+//				meet = meet->next;
+//			}
+//			return meet;
+//		}
+//	}
+//}
 //数据库建表代码 网址是: https://dbfiddle.uk/?rdbms=sqlserver_2019&fiddle=92d6ef6f7b79f85f2a15e30b8aa370b1
 //create table student
 //(
