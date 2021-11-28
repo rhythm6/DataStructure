@@ -288,8 +288,12 @@
 fast走的速度和路程是slow的二倍
 slow进环了以后，在一圈之内,fast一定会追上slow
 slow走的路程:L(环外走的路程)+X
-fast走的路程:L+N*C+X = 2(L+X) -> N*C = L+X ->N*C -X = L
-->(N-1)*C+C-X = L(若快指针只走一圈 L+C+X = 2(L-X) -> C-X=L)
+fast走的路程:L+N*C+X 
+
+由于快指针走的路程是慢指针走的路程的二倍 可以得到 L+N*C+X = 2(L+X) -> N*C = L+X -> N*C -X = L
+->(N-1)*C + C-X = L(根据快慢指针路程推出来的关系表达式) 表达式左边是a走的长度 右边是b走的长度  
+,若N(绕环的圈数)为1 C-X = L  设a从meet位置走(meet =X) b从起始位置走 a走到环的入口是C-X的距离 b走到环的入口是L的距离 又因为C-X=L所以他俩一定在环入口相遇
+
 */
 
 //struct ListNode* detectCycle(struct ListNode* head)

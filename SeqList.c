@@ -305,164 +305,164 @@
 
 
 //带头双向循环链表 最优的链表结构，任意位置插入删除都是O(1)!!!
-ListNode* BuyListNode(LTDataType x)
-{
-	ListNode* newnode = (ListNode*)malloc(sizeof(ListNode));
-	newnode->data = x;
-	newnode->next = NULL;
-	newnode->prev = NULL;
-	return newnode;
-}
-//初始化
-ListNode* ListInit() 
-{
-	ListNode* phead = BuyListNode(0);//传入开辟结点的位置
-	phead->next = phead;//后继指向自己
-	phead->prev = phead;//前驱也指向自己
-	return phead;
-}
-//毁灭
-void ListDestory(ListNode* phead) 
-{
-	ListNode* cur = phead->next;
-	while (cur != phead) 
-	{
-		ListNode* next = cur->next;//记住cur下一个结点的位置
-		free(cur);
-		cur = next;
-	}
-	free(phead);
-	phead = NULL;
-}
-//尾插
-void ListPushBack(ListNode* phead, LTDataType x) 
-{
-	assert(phead);
-	/*
-	//跟单链表的尾插一样 第一步先找尾
-	ListNode* tail = phead->prev;//头结点的前驱 就是链表的尾部
-	
-	ListNode* newnode = BuyListNode(x);//创建新结点
-	tail->next = newnode;//头结点的前驱的后继(链表的原尾部)指向新结点
-	newnode->prev = tail;//新结点的前驱指向tail
-	newnode->next = phead;//新结点的后继指向头结点
-	phead->prev = newnode;//头结点的前驱指向新结点
-	//等同于下面一行
-	*/
-	ListInsert(phead, x);//尾插就是在头结点之前插入
-}
-void ListPrint(ListNode* phead) 
-{
-	ListNode* cur = phead->next;
-	while (cur!= phead)
-	{
-		printf("->%d ",cur->data);
-		cur = cur->next;
-	}
-	printf("\n");
-}
-//头插
-void ListPushFront(ListNode* phead, LTDataType x)
-{
-	assert(phead);
-	/*
-	ListNode* first = phead->next;//first是第二个结点
-	ListNode* newnode = BuyListNode(x);
-
-	phead->next = newnode;
-	newnode->prev = phead;
-	newnode->next = first;
-	first->prev = newnode;
-	//这里面等同于*/
-	ListInsert(phead->next,x);
-}
-//头删
-void ListPopFront(ListNode* phead, LTDataType x)
-{
-	assert(phead);
-	ListNode* first = phead->next;
-	ListNode* second = first->next;
-	phead->next = second;
-	second->prev = phead;
-	free(first);
-	first = NULL;
-}
-//尾删
-void ListPopBack(ListNode* phead, LTDataType x) 
-{
-	assert(phead);
-	assert(phead->next != phead);//只有头结点就报错
-	//先定义俩个指针指向尾 和尾前面的那个结点
-	//然后让尾前的那个结点next指向头结点
-	//头结点的prev指向尾前的那个结点
-	ListNode* tail = phead->prev;
-	ListNode* tailprev = tail->prev;
-	tailprev->next = phead;
-	phead->prev = tailprev;
-	free(tail);
-	tail = NULL;
-}
-
-//查找
-ListNode* ListFind(ListNode* phead, LTDataType x)
-{
-	assert(phead);
-	ListNode* cur = phead->next;
-	while (cur != phead)
-	{
-		if (cur->data == x)
-		{
-			return cur;
-		}
-		cur = cur->next;
-	}
-	return NULL;
-}
-//pos位置之前插入x 这个函数也可以当头插尾插用
-void ListInsert(ListNode* pos, LTDataType x) 
-{
-	assert(pos);
-	ListNode* posprev = pos->prev;
-	ListNode* posnext = pos->next;
-	ListNode* newnode = BuyListNode(x);
-	posprev->next = newnode;
-	newnode->prev = posnext;
-	newnode->next = pos;
-	pos->prev = newnode;
-}
-//删除pos位置的值 这个函数也可以当头删尾删用
-void ListErase(ListNode* pos) 
-{
-	assert(pos);
-	ListNode* posprev = pos->prev;
-	ListNode* posnext = pos->next;
-	posprev->next = posnext;
-	posnext->prev = posprev;
-	free(pos);
-	pos = NULL;
-}
-//判断链表是否为空
-bool ListEmpty(ListNode* phead)
-{
-	if (phead->next == NULL)
-	{
-		return false;//实际返回的是0 选中转到定义可以查看
-	}
-	else
-	{
-		return true;//实际返回的是1
-	}
-}
-//计算链表大小
-int ListSize(ListNode* phead) 
-{
-	int count = 0;
-	ListNode* cur = phead;
-	//while (phead->next != phead)//很蠢的死循环 自己的下一个什么时候等于自己 哈哈哈哈哈
-	while(cur->next != phead)
-	{
-		cur = cur->next;
-		count++;
-	}
-	return count;
-}
+//ListNode* BuyListNode(LTDataType x)
+//{
+//	ListNode* newnode = (ListNode*)malloc(sizeof(ListNode));
+//	newnode->data = x;
+//	newnode->next = NULL;
+//	newnode->prev = NULL;
+//	return newnode;
+//}
+////初始化
+//ListNode* ListInit() 
+//{
+//	ListNode* phead = BuyListNode(0);//传入开辟结点的位置
+//	phead->next = phead;//后继指向自己
+//	phead->prev = phead;//前驱也指向自己
+//	return phead;
+//}
+////毁灭
+//void ListDestory(ListNode* phead) 
+//{
+//	ListNode* cur = phead->next;
+//	while (cur != phead) 
+//	{
+//		ListNode* next = cur->next;//记住cur下一个结点的位置
+//		free(cur);
+//		cur = next;
+//	}
+//	free(phead);
+//	phead = NULL;
+//}
+////尾插
+//void ListPushBack(ListNode* phead, LTDataType x) 
+//{
+//	assert(phead);
+//	/*
+//	//跟单链表的尾插一样 第一步先找尾
+//	ListNode* tail = phead->prev;//头结点的前驱 就是链表的尾部
+//	
+//	ListNode* newnode = BuyListNode(x);//创建新结点
+//	tail->next = newnode;//头结点的前驱的后继(链表的原尾部)指向新结点
+//	newnode->prev = tail;//新结点的前驱指向tail
+//	newnode->next = phead;//新结点的后继指向头结点
+//	phead->prev = newnode;//头结点的前驱指向新结点
+//	//等同于下面一行
+//	*/
+//	ListInsert(phead, x);//尾插就是在头结点之前插入
+//}
+//void ListPrint(ListNode* phead) 
+//{
+//	ListNode* cur = phead->next;
+//	while (cur!= phead)
+//	{
+//		printf("->%d ",cur->data);
+//		cur = cur->next;
+//	}
+//	printf("\n");
+//}
+////头插
+//void ListPushFront(ListNode* phead, LTDataType x)
+//{
+//	assert(phead);
+//	/*
+//	ListNode* first = phead->next;//first是第二个结点
+//	ListNode* newnode = BuyListNode(x);
+//
+//	phead->next = newnode;
+//	newnode->prev = phead;
+//	newnode->next = first;
+//	first->prev = newnode;
+//	//这里面等同于*/
+//	ListInsert(phead->next,x);
+//}
+////头删
+//void ListPopFront(ListNode* phead, LTDataType x)
+//{
+//	assert(phead);
+//	ListNode* first = phead->next;
+//	ListNode* second = first->next;
+//	phead->next = second;
+//	second->prev = phead;
+//	free(first);
+//	first = NULL;
+//}
+////尾删
+//void ListPopBack(ListNode* phead, LTDataType x) 
+//{
+//	assert(phead);
+//	assert(phead->next != phead);//只有头结点就报错
+//	//先定义俩个指针指向尾 和尾前面的那个结点
+//	//然后让尾前的那个结点next指向头结点
+//	//头结点的prev指向尾前的那个结点
+//	ListNode* tail = phead->prev;
+//	ListNode* tailprev = tail->prev;
+//	tailprev->next = phead;
+//	phead->prev = tailprev;
+//	free(tail);
+//	tail = NULL;
+//}
+//
+////查找
+//ListNode* ListFind(ListNode* phead, LTDataType x)
+//{
+//	assert(phead);
+//	ListNode* cur = phead->next;
+//	while (cur != phead)
+//	{
+//		if (cur->data == x)
+//		{
+//			return cur;
+//		}
+//		cur = cur->next;
+//	}
+//	return NULL;
+//}
+////pos位置之前插入x 这个函数也可以当头插尾插用
+//void ListInsert(ListNode* pos, LTDataType x) 
+//{
+//	assert(pos);
+//	ListNode* posprev = pos->prev;
+//	ListNode* posnext = pos->next;
+//	ListNode* newnode = BuyListNode(x);
+//	posprev->next = newnode;
+//	newnode->prev = posnext;
+//	newnode->next = pos;
+//	pos->prev = newnode;
+//}
+////删除pos位置的值 这个函数也可以当头删尾删用
+//void ListErase(ListNode* pos) 
+//{
+//	assert(pos);
+//	ListNode* posprev = pos->prev;
+//	ListNode* posnext = pos->next;
+//	posprev->next = posnext;
+//	posnext->prev = posprev;
+//	free(pos);
+//	pos = NULL;
+//}
+////判断链表是否为空
+//bool ListEmpty(ListNode* phead)
+//{
+//	if (phead->next == NULL)
+//	{
+//		return false;//实际返回的是0 选中转到定义可以查看
+//	}
+//	else
+//	{
+//		return true;//实际返回的是1
+//	}
+//}
+////计算链表大小
+//int ListSize(ListNode* phead) 
+//{
+//	int count = 0;
+//	ListNode* cur = phead;
+//	//while (phead->next != phead)//很蠢的死循环 自己的下一个什么时候等于自己 哈哈哈哈哈
+//	while(cur->next != phead)
+//	{
+//		cur = cur->next;
+//		count++;
+//	}
+//	return count;
+//}

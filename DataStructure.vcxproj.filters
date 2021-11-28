@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\stack">
+      <UniqueIdentifier>{3211ee28-eabc-4144-918d-ecf2843d1044}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructure_1.c">
@@ -30,6 +33,12 @@
     <ClCompile Include="test.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="stacktest.c">
+      <Filter>源文件\stack</Filter>
+    </ClCompile>
+    <ClCompile Include="stack.c">
+      <Filter>源文件\stack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
@@ -37,6 +46,9 @@
   <ItemGroup>
     <ClInclude Include="SeqList.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stack.h">
+      <Filter>源文件\stack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

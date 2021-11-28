@@ -143,6 +143,8 @@
     <ClCompile Include="DataStructure_1.c" />
     <ClCompile Include="first.cpp" />
     <ClCompile Include="Guide.c" />
+    <ClCompile Include="stack.c" />
+    <ClCompile Include="stacktest.c" />
     <ClCompile Include="test.c" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SeqList.h" />
+    <ClInclude Include="stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
