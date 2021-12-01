@@ -139,52 +139,52 @@
 //双向链表有俩个指针 后继(指向下一个指针) 前驱(指向后一个的指针) 
 //带头结点不需要改变传过来的指针，也意味着不需要传二级指针了
 
-void TestList1() 
-{
-	ListNode* plist = ListInit();
-	//ListNode* plist = ListInit(plist);//(报错)不能这样写  error C4700:使用了未初始化的局部变量“plist” 因为后面的参数在plist未初始化完毕就把plist作为参数传进去了
-	ListPushBack(plist, 1);
-	ListPushBack(plist, 2);
-	ListPushBack(plist, 3);
-	ListPushBack(plist, 4);
-	ListPushFront(plist, 0);
-	ListPopFront(plist, 0);//后面的数无论是几，都只进行头删
-	ListPopBack(plist , 4);
-	ListPrint(plist);
-	ListDestory(plist);
-}
-void TestList2()
-{
-	ListNode* plist = ListInit();
-	ListPushBack(plist, 1);
-	ListPushBack(plist, 2);
-	ListPushBack(plist, 3);
-	ListPushBack(plist, 4);
-	ListPrint(plist);
-
-	ListNode* pos = ListFind(plist, 3);//查找第4个结点
-	if (pos) 
-	{
-		//查找，附带着修改的作用
-		pos->data *= 10;
-		printf("找到了,并且结点的值乘以10\n");
-	}
-	else 
-	{
-		printf("未找到\n");
-	}
-	ListPrint(plist);
-	ListInsert(pos, 300);
-	ListPrint(plist);
-	ListErase(pos);
-	ListPrint(plist);
-	int ret= ListEmpty(plist);
-	printf("%d\n", ret);//1 链表不为空
-	int size = ListSize(plist);
-	printf("%d\n", size);
-}
-int main() 
-{
-	TestList2();
-	return 0;
-}
+//void TestList1() 
+//{
+//	ListNode* plist = ListInit();
+//	//ListNode* plist = ListInit(plist);//(报错)不能这样写  error C4700:使用了未初始化的局部变量“plist” 因为后面的参数在plist未初始化完毕就把plist作为参数传进去了
+//	ListPushBack(plist, 1);
+//	ListPushBack(plist, 2);
+//	ListPushBack(plist, 3);
+//	ListPushBack(plist, 4);
+//	ListPushFront(plist, 0);
+//	ListPopFront(plist, 0);//后面的数无论是几，都只进行头删
+//	ListPopBack(plist , 4);
+//	ListPrint(plist);
+//	ListDestory(plist);
+//}
+//void TestList2()
+//{
+//	ListNode* plist = ListInit();
+//	ListPushBack(plist, 1);
+//	ListPushBack(plist, 2);
+//	ListPushBack(plist, 3);
+//	ListPushBack(plist, 4);
+//	ListPrint(plist);
+//
+//	ListNode* pos = ListFind(plist, 3);//查找第4个结点
+//	if (pos) 
+//	{
+//		//查找，附带着修改的作用
+//		pos->data *= 10;
+//		printf("找到了,并且结点的值乘以10\n");
+//	}
+//	else 
+//	{
+//		printf("未找到\n");
+//	}
+//	ListPrint(plist);
+//	ListInsert(pos, 300);
+//	ListPrint(plist);
+//	ListErase(pos);
+//	ListPrint(plist);
+//	int ret= ListEmpty(plist);
+//	printf("%d\n", ret);//1 链表不为空
+//	int size = ListSize(plist);
+//	printf("%d\n", size);
+//}
+//int main() 
+//{
+//	TestList2();
+//	return 0;
+//}

@@ -16,6 +16,9 @@
     <Filter Include="源文件\stack">
       <UniqueIdentifier>{3211ee28-eabc-4144-918d-ecf2843d1044}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\queue">
+      <UniqueIdentifier>{b8ce6d17-8efb-4064-9700-4493e2f553f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructure_1.c">
@@ -33,11 +36,17 @@
     <ClCompile Include="test.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="stacktest.c">
+    <ClCompile Include="Stacktest.c">
       <Filter>源文件\stack</Filter>
     </ClCompile>
-    <ClCompile Include="stack.c">
+    <ClCompile Include="Stack.c">
       <Filter>源文件\stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Queue.c">
+      <Filter>源文件\queue</Filter>
+    </ClCompile>
+    <ClCompile Include="Queuetest.c">
+      <Filter>源文件\queue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,8 +56,11 @@
     <ClInclude Include="SeqList.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="stack.h">
+    <ClInclude Include="Stack.h">
       <Filter>源文件\stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>源文件\queue</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
