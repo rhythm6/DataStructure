@@ -1,21 +1,24 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-//#include"Stack.h"
-//int main()
-//{
-//	ST st;//初始化结构体成员
-//	StackInit(&st);//传递st的地址才能改变st 
-//	StackPush(&st, 0);
-//	StackPush(&st, 1);
-//	StackPush(&st, 2);
-//	StackPush(&st, 3);
-//	StackPush(&st, 4);
-//	StackPush(&st, 5);
-//	while(!StackEmpty(&st))
-//	{
-//		printf("%d ",StackTop(&st));
-//		StackPop(&st);//取一个删一个
-//		printf("\n");
-//	}
-//	StackDestory(&st);//用完销毁 
-//	return 0;
-//}
+#include"Queue.h"
+void TestQueue()
+{
+	Queue q;
+	QueueInit(&q);
+	QueuePush(&q, 1);
+	QueuePush(&q, 2);
+	printf("%d \n", QueueFront(&q));
+	QueuePush(&q, 3);
+	QueuePush(&q, 4);
+	while (!QueueEmpty(&q))
+	{
+		printf("%d ", QueueFront(&q));
+		QueuePop(&q);//取一个删一个
+		printf("\n");
+	}
+	QueueDestory(&q);//用完销毁 
+}
+int main()
+{
+	TestQueue();
+	return 0;
+}
